@@ -24,8 +24,8 @@ public class LogicMenu extends Rectangle{
 		this.menuElements.add(new MenuElement(this.logicScreen, dragHandler, 80, 10, "nor"));
 		this.menuElements.add(new MenuElement(this.logicScreen, dragHandler, 10, 130, "and"));
 		this.menuElements.add(new MenuElement(this.logicScreen, dragHandler, 80, 130, "nand"));
-		this.menuElements.add(new MenuElement(this.logicScreen, dragHandler, 10, 250, "eor"));
-		this.menuElements.add(new MenuElement(this.logicScreen, dragHandler, 80, 250, "enor"));
+		this.menuElements.add(new MenuElement(this.logicScreen, dragHandler, 10, 250, "xor"));
+		this.menuElements.add(new MenuElement(this.logicScreen, dragHandler, 80, 250, "xnor"));
 		this.menuElements.add(new MenuElement(this.logicScreen, dragHandler, 20, 380, "not"));
 		this.menuElements.add(new MenuElement(this.logicScreen, dragHandler, 100, 385, "light"));
 		this.menuElements.add(new MenuElement(this.logicScreen, dragHandler, 10, 500, "switch"));

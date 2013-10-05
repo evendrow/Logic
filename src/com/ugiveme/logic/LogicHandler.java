@@ -15,6 +15,8 @@ import com.ugiveme.logic.component.gate.gateTypes.EOrGate;
 import com.ugiveme.logic.component.gate.gateTypes.NandGate;
 import com.ugiveme.logic.component.gate.gateTypes.NorGate;
 import com.ugiveme.logic.component.gate.gateTypes.OrGate;
+import com.ugiveme.logic.component.gate.gateTypes.XNorGate;
+import com.ugiveme.logic.component.gate.gateTypes.XOrGate;
 
 import com.ugiveme.logic.component.link.Link;
 import com.ugiveme.logic.component.misc.Light;
@@ -163,10 +165,10 @@ public class LogicHandler {
 			newGate = new OrGate(dragHandler, x, y);
 		} else if (gateType.equalsIgnoreCase("And")) {
 			newGate = new AndGate(dragHandler, x, y);
-		} else if (gateType.equalsIgnoreCase("Eor")) {
-			newGate = new EOrGate(dragHandler, x, y);
-		} else if (gateType.equalsIgnoreCase("ENor")) {
-			newGate = new ENor(dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("Xor")) {
+			newGate = new XOrGate(dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("XNor")) {
+			newGate = new XNorGate(dragHandler, x, y);
 		} else if (gateType.equalsIgnoreCase("Nor")) {
 			newGate = new NorGate(dragHandler, x, y);
 		} else if (gateType.equalsIgnoreCase("Nand")) {
