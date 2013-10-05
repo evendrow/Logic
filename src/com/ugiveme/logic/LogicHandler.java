@@ -10,8 +10,6 @@ import com.ugiveme.entity.draggable.DragHandler;
 import com.ugiveme.logic.component.Output;
 import com.ugiveme.logic.component.gate.gateTypes.AO;
 import com.ugiveme.logic.component.gate.gateTypes.AndGate;
-import com.ugiveme.logic.component.gate.gateTypes.ENor;
-import com.ugiveme.logic.component.gate.gateTypes.EOrGate;
 import com.ugiveme.logic.component.gate.gateTypes.NandGate;
 import com.ugiveme.logic.component.gate.gateTypes.NorGate;
 import com.ugiveme.logic.component.gate.gateTypes.OrGate;
