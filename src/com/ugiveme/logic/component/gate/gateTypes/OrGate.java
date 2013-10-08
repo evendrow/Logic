@@ -4,9 +4,9 @@ import com.ugiveme.entity.draggable.DragHandler;
 import com.ugiveme.logic.component.gate.Gate;
 
 public class OrGate extends Gate{
-
+	
 	public OrGate(DragHandler dragHandler, int x, int y) {
-		super(dragHandler, x, y, "or");
+		super(dragHandler, x, y, "or", "res/Orgate.png");
 	}
 	
 	public void tick() {

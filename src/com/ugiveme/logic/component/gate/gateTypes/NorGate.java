@@ -6,7 +6,7 @@ import com.ugiveme.logic.component.gate.Gate;
 public class NorGate extends Gate{
 
 	public NorGate(DragHandler dragHandler, int x, int y) {
-		super(dragHandler, x, y, "Nor");
+		super(dragHandler, x, y, "Nor", "res/NorGate.png");
 	}
 	
 	public void tick() {

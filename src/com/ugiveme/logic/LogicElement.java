@@ -12,6 +12,8 @@ import com.ugiveme.logic.component.Output;
 public class LogicElement extends DraggableEntity{
 	public static final int IOSIZE = 15;
 	
+	private boolean destroyed;
+	
 	private boolean powered;
 	private String elementType;
 	
@@ -23,6 +25,8 @@ public class LogicElement extends DraggableEntity{
 	public LogicElement(DragHandler dragHandler, int x, int y, int width, int height, String elementType) {
 		super(dragHandler, x, y, width, height);
 		
+		this.destroyed = false;
+		
 		this.powered = false;
 		this.elementType = elementType;
 		
@@ -30,10 +34,16 @@ public class LogicElement extends DraggableEntity{
 	}
 	
 	public void destroy() {
+		destroyed = true;
+		
 		if (input != null) {
 			for (int i=0;i<input.length;i++) {
 				input[i].destroy();
 			}
+		}
+		
+		if (output != null) {
+			output.destroy();
 		}
 	}
 	
@@ -49,7 +59,9 @@ public class LogicElement extends DraggableEntity{
 	public void click(Point clickPoint) { }
 	
 	public void tick() {
-		super.tick();
+		if (!destroyed) {
+			super.tick();
+		}
 	}
 	
 	public void render(Graphics g) {
@@ -110,5 +122,9 @@ public class LogicElement extends DraggableEntity{
 	
 	public boolean isPartOfMenu() {
 		return partOfMenu;
+	}
+	
+	public boolean isDestroyed() {
+		return destroyed;
 	}
 }

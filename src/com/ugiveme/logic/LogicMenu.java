@@ -47,7 +47,7 @@ public class LogicMenu extends Rectangle{
 		g.drawRect(x, y, width, height);
 		
 		for (int i=0;i<menuElements.size();i++) {
-			menuElements.get(i).render(g);
+			//menuElements.get(i).render(g);
 		}
 	}
 }

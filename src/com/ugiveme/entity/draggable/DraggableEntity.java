@@ -9,6 +9,8 @@ import com.ugiveme.entity.draggable.DragHandler;
 
 public class DraggableEntity extends Entity{
 
+	public static boolean draggingEntity = false;
+	
 	private DragHandler dragHandler;
 	private Point oldMousePoint;
 	private boolean dragging;
@@ -29,6 +31,21 @@ public class DraggableEntity extends Entity{
 		
 		this.draggable = true;
 	}
+	
+	public DraggableEntity(DragHandler dragHandler, int x, int y, int width, int height, boolean isDraggable) {
+		super(x, y, width, height);
+		
+		if (dragHandler != null) {
+			this.dragHandler = dragHandler;
+		} else {
+			this.dragHandler = null;
+			setDraggable(false);
+		}
+		this.oldMousePoint = dragHandler.getMousePos();
+		this.dragging = false;
+		
+		this.draggable = isDraggable;
+	}
 
 	@Override
 	public void tick() {
@@ -38,6 +55,7 @@ public class DraggableEntity extends Entity{
 					if (dragHandler.startedDragging() && contains(dragHandler.getMousePos())) {
 						dragging = true;
 						dragHandler.setStartedDragging(false);
+						draggingEntity = true;
 					}
 				} 
 				if (dragging) {
@@ -46,6 +64,7 @@ public class DraggableEntity extends Entity{
 				}
 			} else {
 				dragging = false;
+				draggingEntity = false;
 			}
 			oldMousePoint = dragHandler.getMousePos();
 		}

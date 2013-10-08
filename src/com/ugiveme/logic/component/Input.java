@@ -42,18 +42,26 @@ public class Input extends Rectangle{
 	public void tick() {
 		x = (int) logicElement.x + xOffset;
 		y = (int) logicElement.y + yOffset;
+		
+		if (link != null) {
+			if (link.isDestroyed()) {
+				unLink();
+			}
+		}
 	}
 	
 	public void render(Graphics g) {
 		if (isPowered()) {
-			g.setColor(new Color(200, 150, 100));
+			g.setColor(Color.ORANGE);
 		} else {
-			g.setColor(Color.GRAY);
+			g.setColor(Color.BLACK);
 		}
-		g.fillRect(x, y, width, height);
+		g.fillRect(x, y + (width/2) - 1, width, 3);
 		
-		g.setColor(Color.BLACK);
-		g.drawRect(x, y, width, height);
+//		g.fillRect(x, y, width, height);
+//		
+//		g.setColor(Color.BLACK);
+//		g.drawRect(x, y, width, height);
 	}
 	
 	public void link(Link newLink) {
@@ -74,6 +82,13 @@ public class Input extends Rectangle{
 	
 	public boolean linked() {
 		return linked;
+	}
+	
+	public Link getLink() {
+		if (link != null) {
+			return link;
+		}
+		return null;
 	}
 	
 	public boolean isPowered() {

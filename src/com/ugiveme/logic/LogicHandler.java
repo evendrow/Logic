@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import com.ugiveme.entity.draggable.DragHandler;
 import com.ugiveme.logic.component.Output;
+import com.ugiveme.logic.component.SelectionBox;
+import com.ugiveme.logic.component.SelectionGroup;
 import com.ugiveme.logic.component.gate.gateTypes.AO;
 import com.ugiveme.logic.component.gate.gateTypes.AndGate;
 import com.ugiveme.logic.component.gate.gateTypes.NandGate;
@@ -25,16 +27,21 @@ import com.ugiveme.logic.component.misc.SSD;
 public class LogicHandler {
 	
 	private static final Rectangle TRASH = new Rectangle(730, 530, 70, 50);
+	private static final Rectangle DUPLICATE = new Rectangle(650, 0, 150, 50);
 	
-	private DragHandler dragHandler;
+	private static DragHandler dragHandler;
 	
 	private LogicMenu logicMenu;
 	
-	private ArrayList<LogicElement> logicElements;
+	private static ArrayList<LogicElement> logicElements;
 	private ArrayList<Link> links;
 
 	private boolean linkStarted;
 	private Output linkStartOutput;
+	
+	private SelectionBox sBox;
+	private boolean duplicatePressed;
+	private ArrayList<LogicElement> duplicateElements;
 	
 	public LogicHandler(DragHandler dragHandler) {
 		this.dragHandler = dragHandler;
@@ -46,6 +53,10 @@ public class LogicHandler {
 		this.linkStartOutput = null;
 		
 		this.logicMenu = new LogicMenu(dragHandler, 0, 0, this);
+		
+		this.sBox = new SelectionBox(dragHandler, this.logicElements);
+		this.duplicatePressed = false;
+		this.duplicateElements = new ArrayList<LogicElement>();
 	}
 	
 	public void tick() {
@@ -78,7 +89,8 @@ public class LogicHandler {
 					if (logicElements.get(i).getInputAtIndex(k).contains(dragHandler.getMouseClickPoint())) {
 						if (linkStarted) {
 							Link newLink = new Link(linkStartOutput, logicElements.get(i).getInputAtIndex(k));
-							logicElements.get(i).getInputAtIndex(k).link(newLink);
+//							logicElements.get(i).getInputAtIndex(k).link(newLink);
+//							linkStartOutput.link(newLink);
 							links.add(newLink);
 							linkStarted = false;
 						} else {
@@ -100,6 +112,21 @@ public class LogicHandler {
 				logicElements.get(i).click(dragHandler.getMouseClickPoint());
 			}
 			
+			if (DUPLICATE.contains(dragHandler.getMouseClickPoint())) {
+				System.out.println("hi");
+				ArrayList[] toAdd = sBox.duplicate();
+				if (toAdd != null) {
+					duplicateElements = toAdd[0];
+					duplicatePressed = true;
+					for (int i=0;i<toAdd[0].size();i++) {
+//						logicElements.add(toAdd.get(i));
+					}
+					for (int i=0;i<toAdd[1].size();i++) {
+						links.add((Link) toAdd[1].get(i));
+					}
+				}
+			}
+			
 			dragHandler.setMouseClicked(false);
 		}
 		
@@ -113,6 +140,8 @@ public class LogicHandler {
 			if (logicElements.get(i).getRect().intersects(TRASH)) {
 				logicElements.get(i).destroy();
 				logicElements.remove(i);
+			} else if (logicElements.get(i).isDestroyed()) {
+				logicElements.remove(i);
 			}
 		}
 		
@@ -123,13 +152,19 @@ public class LogicHandler {
 				links.get(i).tick();
 			}
 		}
+		
+		sBox.tick();
+		if (duplicatePressed) {
+			sBox.selectionGroup = new SelectionGroup(duplicateElements);
+			duplicatePressed = false;
+		}
 	}
 	
 	public synchronized void render(Graphics g) {
 		logicMenu.render(g);
 		
-		for (LogicElement logicElement : logicElements) {
-			logicElement.render(g);
+		for (int i=logicElements.size()-1;i>-1;i--) {
+			logicElements.get(i).render(g);
 		}
 		
 		for (Link l : links) {
@@ -153,9 +188,18 @@ public class LogicHandler {
 		g.setColor(Color.BLACK);
 		g.drawRect(TRASH.x, TRASH.y, TRASH.width, TRASH.height);
 		g.drawString("Trash", TRASH.x+20, TRASH.y+30);
+		
+		g.setColor(new Color(150, 150, 255));
+		g.fillRect(DUPLICATE.x, DUPLICATE.y, DUPLICATE.width, DUPLICATE.height);
+		
+		g.setColor(Color.BLACK);
+		g.drawRect(DUPLICATE.x, DUPLICATE.y, DUPLICATE.width, DUPLICATE.height);
+		g.drawString("Press to Duplicate", DUPLICATE.x+20, DUPLICATE.y+30);
+		
+		sBox.render(g);
 	}
 	
-	public LogicElement addGate(String gateType, int x, int y) {
+	public static LogicElement addGate(String gateType, int x, int y) {
 		LogicElement newGate = new LogicElement(dragHandler, x, y, 100, 100, "null");
 		if (gateType.equalsIgnoreCase("AO")) {
 			newGate = new AO(dragHandler, x, y);

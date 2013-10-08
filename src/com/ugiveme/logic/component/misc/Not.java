@@ -37,7 +37,7 @@ public class Not extends LogicElement{
 	}
 	
 	public void render(Graphics g) {
-		g.setColor(Color.GRAY);
+		g.setColor(new Color(200, 200, 200));
 		g.fillPolygon(new int[] {(int) x, (int) x + width, (int) x}, new int[] {(int) y, (int) y + (height/2), (int) y + height}, 3);
 		g.setColor(Color.BLACK);
 		g.drawPolygon(new int[] {(int) x, (int) x + width, (int) x}, new int[] {(int) y, (int) y + (height/2), (int) y + height}, 3);

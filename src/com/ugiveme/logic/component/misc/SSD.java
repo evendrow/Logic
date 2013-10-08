@@ -45,8 +45,11 @@ public class SSD extends LogicElement{
 	}
 	
 	public void render(Graphics g) {
-		g.setColor(new Color(80, 80, 80));
+		g.setColor(new Color(200, 200, 200));
 		g.fillRect((int) x, (int) y, width, height);
+		
+		g.setColor(Color.BLACK);
+		g.drawRect((int) x, (int) y, width, height);
 		
 		for (int i=0;i<input.length;i++) {
 			input[i].render(g);
