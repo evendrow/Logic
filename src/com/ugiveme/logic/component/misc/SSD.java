@@ -21,18 +21,18 @@ public class SSD extends LogicElement{
 		new Rectangle(36, 57, 2, 2),
 	};
 	
-	public SSD(DragHandler dragHandler, int x, int y) {
-		super(dragHandler, x, y, 39, 60, "SSD");
+	public SSD(int id, DragHandler dragHandler, int x, int y) {
+		super(id, dragHandler, x, y, 39, 60, "SSD");
 		
 		input = new Input[] {
-				new Input(0, -8, 8, 8, this),
-				new Input(10, -8, 8, 8, this),
-				new Input(20, -8, 8, 8, this),
-				new Input(30, -8, 8, 8, this),
-				new Input(0, 60, 8, 8, this),
-				new Input(10, 60, 8, 8, this),
-				new Input(20, 60, 8, 8, this),
-				new Input(30, 60, 8, 8, this)
+				new Input(0, -8, 8, 8, this, 0),
+				new Input(10, -8, 8, 8, this, 1),
+				new Input(20, -8, 8, 8, this, 2),
+				new Input(30, -8, 8, 8, this, 3),
+				new Input(0, 60, 8, 8, this, 4),
+				new Input(10, 60, 8, 8, this, 5),
+				new Input(20, 60, 8, 8, this, 6),
+				new Input(30, 60, 8, 8, this, 7)
 		};
 	}
 	

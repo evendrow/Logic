@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-
 import com.ugiveme.entity.draggable.DragHandler;
 import com.ugiveme.logic.component.Output;
 import com.ugiveme.logic.component.SelectionBox;
@@ -23,6 +22,8 @@ import com.ugiveme.logic.component.misc.Light;
 import com.ugiveme.logic.component.misc.Not;
 import com.ugiveme.logic.component.misc.OnOffSwitch;
 import com.ugiveme.logic.component.misc.SSD;
+import com.ugiveme.logic.save.SaveObject;
+import com.ugiveme.logicRunner.Game;
 
 public class LogicHandler {
 	
@@ -33,8 +34,9 @@ public class LogicHandler {
 	
 	private LogicMenu logicMenu;
 	
-	private static ArrayList<LogicElement> logicElements;
-	private ArrayList<Link> links;
+	public static ArrayList<LogicElement> logicElements = new ArrayList<LogicElement>();
+	public static ArrayList<LogicElement> menuElements = new ArrayList<LogicElement>();
+	public static ArrayList<Link> links = new ArrayList<Link>();
 
 	private boolean linkStarted;
 	private Output linkStartOutput;
@@ -43,18 +45,17 @@ public class LogicHandler {
 	private boolean duplicatePressed;
 	private ArrayList<LogicElement> duplicateElements;
 	
+	private static int nextId = 0;
+	
 	public LogicHandler(DragHandler dragHandler) {
-		this.dragHandler = dragHandler;
-		
-		this.logicElements = new ArrayList<LogicElement>();
-		this.links = new ArrayList<Link>();
+		LogicHandler.dragHandler = dragHandler;
 		
 		this.linkStarted = false;
 		this.linkStartOutput = null;
 		
-		this.logicMenu = new LogicMenu(dragHandler, 0, 0, this);
+		this.logicMenu = new LogicMenu(dragHandler, 0, 0);
 		
-		this.sBox = new SelectionBox(dragHandler, this.logicElements);
+		this.sBox = new SelectionBox(dragHandler, logicElements);
 		this.duplicatePressed = false;
 		this.duplicateElements = new ArrayList<LogicElement>();
 	}
@@ -114,18 +115,20 @@ public class LogicHandler {
 			
 			if (DUPLICATE.contains(dragHandler.getMouseClickPoint())) {
 				System.out.println("hi");
-				ArrayList[] toAdd = sBox.duplicate();
+				SaveObject toAdd = sBox.duplicate();
 				if (toAdd != null) {
-					duplicateElements = toAdd[0];
+					duplicateElements = toAdd.getLogicElements();
 					duplicatePressed = true;
-					for (int i=0;i<toAdd[0].size();i++) {
+					for (int i=0;i<toAdd.getLogicElements().size();i++) {
 //						logicElements.add(toAdd.get(i));
 					}
-					for (int i=0;i<toAdd[1].size();i++) {
-						links.add((Link) toAdd[1].get(i));
+					for (int i=0;i<toAdd.getLinks().size();i++) {
+						links.add((Link) toAdd.getLinks().get(i));
 					}
 				}
 			}
+			
+			logicMenu.click(dragHandler.getMouseClickPoint());
 			
 			dragHandler.setMouseClicked(false);
 		}
@@ -145,6 +148,14 @@ public class LogicHandler {
 			}
 		}
 		
+		for (int i=0;i<menuElements.size();i++) {
+			menuElements.get(i).tick();
+			if (!menuElements.get(i).isPartOfMenu()) {
+				logicElements.add(menuElements.get(i));
+				menuElements.remove(i);
+			}
+		}
+		
 		for (int i=0;i<links.size();i++) {
 			if (links.get(i).isDestroyed()) {
 				links.remove(i);
@@ -158,6 +169,9 @@ public class LogicHandler {
 			sBox.selectionGroup = new SelectionGroup(duplicateElements);
 			duplicatePressed = false;
 		}
+		
+		TRASH.x = Game.frame.getWidth() - TRASH.width;
+		DUPLICATE.x = Game.frame.getWidth() - DUPLICATE.width;
 	}
 	
 	public synchronized void render(Graphics g) {
@@ -165,6 +179,10 @@ public class LogicHandler {
 		
 		for (int i=logicElements.size()-1;i>-1;i--) {
 			logicElements.get(i).render(g);
+		}
+		
+		for (LogicElement e : menuElements) {
+			e.render(g);
 		}
 		
 		for (Link l : links) {
@@ -199,35 +217,96 @@ public class LogicHandler {
 		sBox.render(g);
 	}
 	
-	public static LogicElement addGate(String gateType, int x, int y) {
-		LogicElement newGate = new LogicElement(dragHandler, x, y, 100, 100, "null");
-		if (gateType.equalsIgnoreCase("AO")) {
-			newGate = new AO(dragHandler, x, y);
-		} else if (gateType.equalsIgnoreCase("Or")) {
-			newGate = new OrGate(dragHandler, x, y);
-		} else if (gateType.equalsIgnoreCase("And")) {
-			newGate = new AndGate(dragHandler, x, y);
-		} else if (gateType.equalsIgnoreCase("Xor")) {
-			newGate = new XOrGate(dragHandler, x, y);
-		} else if (gateType.equalsIgnoreCase("XNor")) {
-			newGate = new XNorGate(dragHandler, x, y);
-		} else if (gateType.equalsIgnoreCase("Nor")) {
-			newGate = new NorGate(dragHandler, x, y);
-		} else if (gateType.equalsIgnoreCase("Nand")) {
-			newGate = new NandGate(dragHandler, x, y);
-		} else if (gateType.equalsIgnoreCase("Switch")) {
-			newGate = new OnOffSwitch(dragHandler, x, y);
-		} else if (gateType.equalsIgnoreCase("Light")) {
-			newGate = new Light(dragHandler, x, y);
-		} else if (gateType.equalsIgnoreCase("Not")) {
-			newGate = new Not(dragHandler, x, y);
-		} else if (gateType.equalsIgnoreCase("SSD")) {
-			newGate = new SSD(dragHandler, x, y);
-		}//else {
-//			newGate = new LogicElement(dragHandler, x, y, 100, 100, "null");
-//		}
+	public static LogicElement addGate(String elementType, int x, int y) {
+		LogicElement newElement = getGate(elementType, x, y);
 		
-		logicElements.add(newGate);
+		logicElements.add(newElement);
+		return newElement;
+	}
+	
+	public static LogicElement addMenuElement(String elementType, int x, int y) {
+		LogicElement newElement = getGate(elementType, x, y);
+		newElement.setPartOfMenu(true);
+		
+		menuElements.add(newElement);
+		return newElement;
+	}
+	
+	public static LogicElement getGate(String gateType, int x, int y) {
+		LogicElement newGate;
+		if (gateType.equalsIgnoreCase("AO")) {
+			newGate = new AO(nextId++, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("Or")) {
+			newGate = new OrGate(nextId++, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("And")) {
+			newGate = new AndGate(nextId++, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("Xor")) {
+			newGate = new XOrGate(nextId++, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("XNor")) {
+			newGate = new XNorGate(nextId++, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("Nor")) {
+			newGate = new NorGate(nextId++, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("Nand")) {
+			newGate = new NandGate(nextId++, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("Switch")) {
+			newGate = new OnOffSwitch(nextId++, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("Light")) {
+			newGate = new Light(nextId++, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("Not")) {
+			newGate = new Not(nextId++, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("SSD")) {
+			newGate = new SSD(nextId++, dragHandler, x, y);
+		} else {
+			newGate = new LogicElement(nextId++, dragHandler, x, y, 100, 100, "null");
+		}
+		
 		return newGate;
+	}
+	
+	public static LogicElement getGate(int id, String gateType, int x, int y) {
+		LogicElement newGate;
+		if (gateType.equalsIgnoreCase("AO")) {
+			newGate = new AO(id, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("Or")) {
+			newGate = new OrGate(id, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("And")) {
+			newGate = new AndGate(id, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("Xor")) {
+			newGate = new XOrGate(id, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("XNor")) {
+			newGate = new XNorGate(id, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("Nor")) {
+			newGate = new NorGate(id, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("Nand")) {
+			newGate = new NandGate(id, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("Switch")) {
+			newGate = new OnOffSwitch(id, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("Light")) {
+			newGate = new Light(id, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("Not")) {
+			newGate = new Not(id, dragHandler, x, y);
+		} else if (gateType.equalsIgnoreCase("SSD")) {
+			newGate = new SSD(id, dragHandler, x, y);
+		} else {
+			newGate = new LogicElement(id, dragHandler, x, y, 100, 100, "null");
+		}
+		
+		return newGate;
+	}
+	
+	public static void addLogic(SaveObject logic) {
+		if (logic != null) {
+			if (logic.getLogicElements().size() > 0) {
+				for (int i=0;i<logic.getLogicElements().size();i++) {
+					logic.getLogicElements().get(i).setId(nextId++);
+					logicElements.add(logic.getLogicElements().get(i));
+				}
+			}
+			if (logic.getLinks().size() > 0) {
+				for (int i=0;i<logic.getLinks().size();i++) {
+					links.add(logic.getLinks().get(i));
+				}
+			}
+		}
 	}
 }

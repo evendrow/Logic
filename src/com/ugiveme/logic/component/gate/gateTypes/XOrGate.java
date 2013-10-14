@@ -5,8 +5,8 @@ import com.ugiveme.logic.component.gate.Gate;
 
 public class XOrGate extends Gate{
 
-	public XOrGate(DragHandler dragHandler, int x, int y) {
-		super(dragHandler, x, y, "Xor");
+	public XOrGate(int id, DragHandler dragHandler, int x, int y) {
+		super(id, dragHandler, x, y, "Xor");
 	}
 	
 	public void tick() {

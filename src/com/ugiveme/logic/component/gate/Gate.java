@@ -21,28 +21,28 @@ public class Gate extends LogicElement{
 	
 	private Image gateImage;
 	
-	public Gate(DragHandler dragHandler, int x, int y, String gateType) {
-		super(dragHandler, x, y, Gate.GATESIZE, Gate.GATESIZE, gateType);
+	public Gate(int id, DragHandler dragHandler, int x, int y, String gateType) {
+		super(id, dragHandler, x, y, Gate.GATESIZE, Gate.GATESIZE, gateType);
 		
 		this.gateType = gateType;
 		
 		this.input = new Input[] {
-			new Input(-(IOSIZE/2), 10, IOSIZE, IOSIZE, this),
-			new Input(-(IOSIZE/2), GATESIZE - IOSIZE - 10, IOSIZE, IOSIZE, this)
+			new Input(-(IOSIZE/2), 10, IOSIZE, IOSIZE, this, 0),
+			new Input(-(IOSIZE/2), GATESIZE - IOSIZE - 10, IOSIZE, IOSIZE, this, 1)
 		};
-		this.output = new Output((int) width - (IOSIZE/2), (int) ((height - IOSIZE)/2), IOSIZE, IOSIZE, this);
+		this.output = new Output((int) width - (IOSIZE/2), (int) ((height - IOSIZE)/2), IOSIZE, IOSIZE, this, 0);
 	}
 	
-	public Gate(DragHandler dragHandler, int x, int y, String gateType, String gateImageURL) {
-		super(dragHandler, x, y, Gate.GATESIZE, Gate.GATESIZE, gateType);
+	public Gate(int id, DragHandler dragHandler, int x, int y, String gateType, String gateImageURL) {
+		super(id, dragHandler, x, y, Gate.GATESIZE, Gate.GATESIZE, gateType);
 		
 		this.gateType = gateType;
 		
 		this.input = new Input[] {
-			new Input(-(IOSIZE/2), 10, IOSIZE, IOSIZE, this),
-			new Input(-(IOSIZE/2), GATESIZE - IOSIZE - 10, IOSIZE, IOSIZE, this)
+			new Input(-(IOSIZE/2), 10, IOSIZE, IOSIZE, this, 0),
+			new Input(-(IOSIZE/2), GATESIZE - IOSIZE - 10, IOSIZE, IOSIZE, this, 1)
 		};
-		this.output = new Output((int) width - (IOSIZE/2), (int) ((height - IOSIZE)/2), IOSIZE, IOSIZE, this);
+		this.output = new Output((int) width - (IOSIZE/2), (int) ((height - IOSIZE)/2), IOSIZE, IOSIZE, this, 0);
 		
 		try {
 			this.gateImage = ImageIO.read(new File(gateImageURL));

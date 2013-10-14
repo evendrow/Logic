@@ -22,7 +22,9 @@ public class LogicElement extends DraggableEntity{
 	
 	private boolean partOfMenu;
 	
-	public LogicElement(DragHandler dragHandler, int x, int y, int width, int height, String elementType) {
+	private int id;
+	
+	public LogicElement(int id, DragHandler dragHandler, int x, int y, int width, int height, String elementType) {
 		super(dragHandler, x, y, width, height);
 		
 		this.destroyed = false;
@@ -31,6 +33,8 @@ public class LogicElement extends DraggableEntity{
 		this.elementType = elementType;
 		
 		this.partOfMenu = false;
+		
+		this.id = id;
 	}
 	
 	public void destroy() {
@@ -116,15 +120,27 @@ public class LogicElement extends DraggableEntity{
 		return null;
 	}
 	
-	public String getType() {
-		return elementType;
+	public void setPartOfMenu(boolean partOfMenu) {
+		this.partOfMenu = partOfMenu;
 	}
 	
 	public boolean isPartOfMenu() {
 		return partOfMenu;
 	}
 	
+	public String getType() {
+		return elementType;
+	}
+	
 	public boolean isDestroyed() {
 		return destroyed;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 }

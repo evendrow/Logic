@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import com.ugiveme.entity.Entity;
 import com.ugiveme.entity.draggable.DragHandler;
@@ -17,7 +18,7 @@ import com.ugiveme.logic.LogicHandler;
 public class Game extends JPanel implements Runnable{
 	private static final long serialVersionUID = 1L;
 	
-	public static final String title = "MIRROR SHIFT!";
+	public static final String title = "Logic FTW!!!!";
 	public static final Dimension size = new Dimension(800, 600);
 	
 	public static Thread gameLoop;
@@ -38,16 +39,20 @@ public class Game extends JPanel implements Runnable{
 	public Game() {
 		game = this;
 		
+		JScrollPane scrollPane = new JScrollPane(this);
+		scrollPane.setSize(size);
+		
 		frame = new JFrame();
 		
 		frame.setTitle(title);
 		frame.setSize(size);
-		frame.setResizable(false);
+		frame.setMinimumSize(size);
+		frame.setResizable(true);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		frame.setLayout(new BorderLayout());
-		frame.add(game, BorderLayout.CENTER);
+		frame.add(scrollPane, BorderLayout.CENTER);
 		frame.setVisible(true);
 		
 		entities = new ArrayList<Entity>();
@@ -96,8 +101,6 @@ public class Game extends JPanel implements Runnable{
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
-		g.setColor(Color.BLACK);
-		g.drawString("fps: " + fps, 20, 20);
 		if (getEntities() != null) {
 			for (Entity e : getEntities()) {
 				e.render(g);
@@ -107,6 +110,9 @@ public class Game extends JPanel implements Runnable{
 		if (logicHandler != null) {
 			logicHandler.render(g);
 		}
+		
+		g.setColor(Color.BLACK);
+		g.drawString("fps: " + fps, 50, 25);
 	}
 	
 	public void run() {

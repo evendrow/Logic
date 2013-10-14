@@ -3,7 +3,6 @@ package com.ugiveme.logic.component.misc;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GradientPaint;
 import java.awt.MultipleGradientPaint.CycleMethod;
 import java.awt.RadialGradientPaint;
 
@@ -13,11 +12,11 @@ import com.ugiveme.logic.component.Input;
 
 public class Light extends LogicElement{
 	
-	public Light(DragHandler dragHandler, int x, int y) {
-		super(dragHandler, x, y, 40, 40, "Light");
+	public Light(int id, DragHandler dragHandler, int x, int y) {
+		super(id, dragHandler, x, y, 40, 40, "Light");
 		
 		input = new Input[] {
-			new Input(-IOSIZE, (height - IOSIZE)/2, IOSIZE, IOSIZE, this)
+			new Input(-IOSIZE, (height - IOSIZE)/2, IOSIZE, IOSIZE, this, 0)
 		};
 	}
 	

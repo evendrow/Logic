@@ -2,11 +2,13 @@ package com.ugiveme.logic.component;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 
 import com.ugiveme.entity.draggable.DragHandler;
 import com.ugiveme.entity.draggable.DraggableEntity;
 import com.ugiveme.logic.LogicElement;
+import com.ugiveme.logic.save.SaveObject;
 
 public class SelectionBox extends DraggableEntity{
 
@@ -24,7 +26,7 @@ public class SelectionBox extends DraggableEntity{
 		this.boxStarted = false;
 	}
 	
-	public ArrayList[] duplicate() {
+	public SaveObject duplicate() {
 		if (selectionGroup != null) {
 			if (selectionGroup.size() > 0) {
 				return selectionGroup.duplicate();
@@ -56,7 +58,7 @@ public class SelectionBox extends DraggableEntity{
 				boxStarted = false;
 				ArrayList<LogicElement> LEInBox = new ArrayList<LogicElement>();
 				for (int i=0;i<logicElements.size();i++) {
-					if (getRect().intersects(logicElements.get(i).getRect())) {
+					if (getOmniDirectionalRect().intersects(logicElements.get(i).getRect())) {
 						LEInBox.add(this.logicElements.get(i));
 					}
 				}
@@ -70,14 +72,18 @@ public class SelectionBox extends DraggableEntity{
 	public void render(Graphics g) {
 		if (width != 0 && height != 0) {
 			g.setColor(new Color(150, 150, 250, 60));
-			g.fillRect((int) x, (int) y, width, height);
+			g.fillRect((int) x+((int) x < x+width ? 0 : width), (int) y+((int) y < y+height ? 0 : height), ((int) x < x+width ? width : (int) -width), ((int) y < y+height ? height : -height));
 			
 			g.setColor(new Color(150, 150, 250));
-			g.drawRect((int) x, (int) y, width, height);
+			g.drawRect((int) x+((int) x < x+width ? 0 : width), (int) y+((int) y < y+height ? 0 : height), ((int) x < x+width ? width : (int) -width), ((int) y < y+height ? height : -height));
 		}
 		
 		if (selectionGroup != null) {
 			selectionGroup.render(g);
 		}
+	}
+	
+	public Rectangle getOmniDirectionalRect() {
+		return new Rectangle((int) x+((int) x < x+width ? 0 : width), (int) y+((int) y < y+height ? 0 : height), ((int) x < x+width ? width : (int) -width), ((int) y < y+height ? height : -height));
 	}
 }

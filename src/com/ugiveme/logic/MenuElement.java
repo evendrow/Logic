@@ -8,27 +8,22 @@ import com.ugiveme.entity.draggable.DragHandler;
 
 public class MenuElement extends Rectangle{
 	
-	private LogicHandler logicScreen;
-	private DragHandler dragHandler;
-	
 	private String elementName;
 	
 	private LogicElement element;
 	
-	public MenuElement(LogicHandler logicScreen, DragHandler dragHandler, int x, int y, String elementName) {
+	public MenuElement(DragHandler dragHandler, int x, int y, String elementName) {
 		setBounds(x, y, 60, 60);
-		
-		this.logicScreen = logicScreen;
-		this.dragHandler = dragHandler;
 		
 		this.elementName = elementName;
 		
-		this.element = this.logicScreen.addGate(elementName, x, y);
+		this.element = LogicHandler.addMenuElement(elementName, x, y);
 	}
 	
 	public void tick() {
 		if (!element.getPosPoint().equals(this.getPosPoint())) {
-			element = logicScreen.addGate(elementName, x, y);
+			element.setPartOfMenu(false);
+			element = LogicHandler.addMenuElement(elementName, x, y);
 		}
 	}
 	

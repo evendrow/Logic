@@ -5,8 +5,8 @@ import com.ugiveme.logic.component.gate.Gate;
 
 public class XNorGate extends Gate{
 
-	public XNorGate(DragHandler dragHandler, int x, int y) {
-		super(dragHandler, x, y, "XNor");
+	public XNorGate(int id, DragHandler dragHandler, int x, int y) {
+		super(id, dragHandler, x, y, "XNor");
 	}
 	
 	public void tick() {

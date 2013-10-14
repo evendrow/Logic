@@ -5,8 +5,8 @@ import com.ugiveme.logic.component.gate.Gate;
 
 public class AndGate extends Gate{
 
-	public AndGate(DragHandler dragHandler, int x, int y) {
-		super(dragHandler, x, y, "And", "res/AndGate.png");
+	public AndGate(int id, DragHandler dragHandler, int x, int y) {
+		super(id, dragHandler, x, y, "And", "res/AndGate.png");
 	}
 	
 	public void tick() {

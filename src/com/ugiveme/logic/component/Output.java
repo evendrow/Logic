@@ -19,7 +19,9 @@ public class Output extends Rectangle{
 	private int xOffset;
 	private int yOffset;
 	
-	public Output(int xOffset, int yOffset, int width, int height, LogicElement logicElement) {
+	private int index;
+	
+	public Output(int xOffset, int yOffset, int width, int height, LogicElement logicElement, int index) {
 		setBounds((int) logicElement.x + xOffset, (int) logicElement.y + yOffset, width, height);
 		
 		this.xOffset = xOffset;
@@ -31,6 +33,7 @@ public class Output extends Rectangle{
 		
 		this.powered = false;
 		
+		this.index = index;
 	}
 	
 	public void destroy() {
@@ -74,5 +77,13 @@ public class Output extends Rectangle{
 	
 	public void setPowered(boolean powered) {
 		this.powered = powered;
+	}
+	
+	public LogicElement getLogicElement() {
+		return logicElement;
+	}
+	
+	public int getIndex() {
+		return index;
 	}
 }

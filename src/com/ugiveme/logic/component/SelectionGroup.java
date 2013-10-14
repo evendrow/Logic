@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import com.ugiveme.logic.LogicElement;
 import com.ugiveme.logic.LogicHandler;
 import com.ugiveme.logic.component.link.Link;
+import com.ugiveme.logic.save.SaveObject;
 
 public class SelectionGroup {
 
@@ -27,7 +28,7 @@ public class SelectionGroup {
 		return logicElements.size();
 	}
 	
-	public ArrayList[] duplicate() {
+	public SaveObject duplicate() {
 		ArrayList<LogicElement> newElements = new ArrayList<LogicElement>();
 		ArrayList<Link> newLinks = new ArrayList<Link>();
 		
@@ -50,7 +51,7 @@ public class SelectionGroup {
 		}System.out.println("done2");
 		
 		
-		return new ArrayList[] {newElements, newLinks};
+		return new SaveObject(newElements, newLinks);
 	}
 	
 	

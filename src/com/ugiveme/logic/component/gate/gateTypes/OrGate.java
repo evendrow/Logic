@@ -5,8 +5,8 @@ import com.ugiveme.logic.component.gate.Gate;
 
 public class OrGate extends Gate{
 	
-	public OrGate(DragHandler dragHandler, int x, int y) {
-		super(dragHandler, x, y, "or", "res/Orgate.png");
+	public OrGate(int id, DragHandler dragHandler, int x, int y) {
+		super(id, dragHandler, x, y, "or", "res/Orgate.png");
 	}
 	
 	public void tick() {

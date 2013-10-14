@@ -10,14 +10,14 @@ import com.ugiveme.logic.component.Output;
 
 public class Not extends LogicElement{
 
-	public Not(DragHandler dragHandler, int x, int y) {
-		super(dragHandler, x, y, 50, 50, "Not");
+	public Not(int id, DragHandler dragHandler, int x, int y) {
+		super(id, dragHandler, x, y, 50, 50, "Not");
 		
 		input = new Input[] {
-				new Input(-IOSIZE, (int) ((height - IOSIZE)/2), IOSIZE, IOSIZE, this)
+				new Input(-IOSIZE, (int) ((height - IOSIZE)/2), IOSIZE, IOSIZE, this, 0)
 		};
 		
-		output = new Output((int) width - IOSIZE, (int) ((height - IOSIZE)/2), IOSIZE, IOSIZE, this);
+		output = new Output((int) width - IOSIZE, (int) ((height - IOSIZE)/2), IOSIZE, IOSIZE, this, 0);
 
 	}
 	

@@ -10,10 +10,10 @@ import com.ugiveme.logic.component.Output;
 
 public class OnOffSwitch extends LogicElement{
 
-	public OnOffSwitch(DragHandler dragHandler, int x, int y) {
-		super(dragHandler, x, y, 30, 60, "OOSwitch");
+	public OnOffSwitch(int id, DragHandler dragHandler, int x, int y) {
+		super(id, dragHandler, x, y, 30, 60, "OOSwitch");
 		
-		output = new Output(width, (height - IOSIZE)/2, IOSIZE, IOSIZE, this);
+		output = new Output(width, (height - IOSIZE)/2, IOSIZE, IOSIZE, this, 0);
 	}
 	
 	public void click(Point p) {

@@ -5,8 +5,8 @@ import com.ugiveme.logic.component.gate.Gate;
 
 public class NandGate extends Gate{
 	
-	public NandGate(DragHandler dragHandler, int x, int y) {
-		super(dragHandler, x, y, "Nand", "res/NandGate.png");
+	public NandGate(int id, DragHandler dragHandler, int x, int y) {
+		super(id, dragHandler, x, y, "Nand", "res/NandGate.png");
 	}
 	
 	public void tick() {
