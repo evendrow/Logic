@@ -43,7 +43,7 @@ public class Link {
 			//g.drawLine(linkPoint1.x + (linkPoint1.width/2), linkPoint1.y + (linkPoint1.height/2), linkPoint2.x + (linkPoint2.width/2), linkPoint2.y + (linkPoint2.height/2));
 			
 			g.drawLine(linkPoint1.x + (linkPoint1.width/2), linkPoint1.y + (linkPoint1.height/2), linkPoint1.x + (linkPoint1.width/2) + ((linkPoint2.x - linkPoint1.x)/2), linkPoint1.y + (linkPoint1.height/2));
-			g.drawLine(linkPoint1.x + (linkPoint1.width/2) + ((linkPoint2.x - linkPoint1.x)/2), linkPoint1.y + (linkPoint1.height/2), linkPoint1.x + (linkPoint1.width/2) + ((linkPoint2.x - linkPoint1.x)/2), linkPoint1.y + (linkPoint1.height/2) + linkPoint2.y - linkPoint1.y);
+			g.drawLine(linkPoint1.x + (linkPoint1.width/2) + ((linkPoint2.x - linkPoint1.x)/2), linkPoint1.y + (linkPoint1.height/2), linkPoint1.x + (linkPoint1.width/2) + ((linkPoint2.x - linkPoint1.x)/2), (linkPoint2.height/2) + linkPoint2.y);
 			g.drawLine(linkPoint1.x + (linkPoint1.width/2) + ((linkPoint2.x - linkPoint1.x)/2), linkPoint2.y + (linkPoint2.height/2), linkPoint2.x + (linkPoint2.width/2), linkPoint2.y + (linkPoint2.height/2));
 	
 		}

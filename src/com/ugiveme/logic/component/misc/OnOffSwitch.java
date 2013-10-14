@@ -11,7 +11,7 @@ import com.ugiveme.logic.component.Output;
 public class OnOffSwitch extends LogicElement{
 
 	public OnOffSwitch(int id, DragHandler dragHandler, int x, int y) {
-		super(id, dragHandler, x, y, 30, 60, "OOSwitch");
+		super(id, dragHandler, x, y, 30, 60, "Switch");
 		
 		output = new Output(width, (height - IOSIZE)/2, IOSIZE, IOSIZE, this, 0);
 	}

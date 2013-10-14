@@ -49,32 +49,34 @@ public class Save {
 		ArrayList<LogicElement> logicElements = new ArrayList<LogicElement>();
 		ArrayList<Link> links = new ArrayList<Link>();
 		
-		String[] components = save.split("&");
+		try {
+			String[] components = save.split("&");
 		
-		String[] logicInfo = components[0].split(";");
-		for (int i=0;i<logicInfo.length;i++) {
-			String[] elementInfo = logicInfo[i].split(":");
-			logicElements.add(LogicHandler.getGate(Integer.parseInt(elementInfo[0]), elementInfo[1], Integer.parseInt(elementInfo[2]), Integer.parseInt(elementInfo[3])));
-		}
-		
-		if (components.length == 2) {
-			String[] allLinkInfo = components[1].split(";");
-			for (int i=0;i<allLinkInfo.length;i++) {
-				String[] linkInfo = allLinkInfo[i].split(":");
-				Output l1 = null;
-				Input l2 = null;
-				for (int k=0;k<logicElements.size();k++) {
-					if (logicElements.get(k).getId() == Integer.parseInt(linkInfo[0])) {
-						l1 = logicElements.get(k).getOutput();
-					} else if (logicElements.get(k).getId() == Integer.parseInt(linkInfo[1])) {
-						l2 = logicElements.get(k).getInput()[Integer.parseInt(linkInfo[2])];
+			String[] logicInfo = components[0].split(";");
+			for (int i=0;i<logicInfo.length;i++) {
+				String[] elementInfo = logicInfo[i].split(":");
+				logicElements.add(LogicHandler.getGate(Integer.parseInt(elementInfo[0]), elementInfo[1], Integer.parseInt(elementInfo[2]), Integer.parseInt(elementInfo[3])));
+			}
+			
+			if (components.length == 2) {
+				String[] allLinkInfo = components[1].split(";");
+				for (int i=0;i<allLinkInfo.length;i++) {
+					String[] linkInfo = allLinkInfo[i].split(":");
+					Output l1 = null;
+					Input l2 = null;
+					for (int k=0;k<logicElements.size();k++) {
+						if (logicElements.get(k).getId() == Integer.parseInt(linkInfo[0])) {
+							l1 = logicElements.get(k).getOutput();
+						} else if (logicElements.get(k).getId() == Integer.parseInt(linkInfo[1])) {
+							l2 = logicElements.get(k).getInput()[Integer.parseInt(linkInfo[2])];
+						}
+					}
+					if (l1 != null && l2 != null) {
+						links.add(new Link(l1, l2));
 					}
 				}
-				if (l1 != null && l2 != null) {
-					links.add(new Link(l1, l2));
-				}
-			}
-		}
+			} 
+		} catch (Exception e) {}
 		
 		return new SaveObject(logicElements, links);
 	}
