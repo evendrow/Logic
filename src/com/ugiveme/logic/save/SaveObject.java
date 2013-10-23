@@ -2,24 +2,24 @@ package com.ugiveme.logic.save;
 
 import java.util.ArrayList;
 
-import com.ugiveme.logic.LogicElement;
-import com.ugiveme.logic.component.link.Link;
+import com.ugiveme.logic.gui.LogicElementRenderer;
+import com.ugiveme.logic.gui.component.LinkRenderer;
 
 public class SaveObject {
 	
-	private ArrayList<LogicElement> logicElements;
-	private ArrayList<Link> links;
+	private ArrayList<LogicElementRenderer> logicElements;
+	private ArrayList<LinkRenderer> links;
 	
-	public SaveObject(ArrayList<LogicElement> logicElements, ArrayList<Link> links) {
+	public SaveObject(ArrayList<LogicElementRenderer> logicElements, ArrayList<LinkRenderer> links) {
 		this.logicElements = logicElements;
 		this.links = links;
 	}
 	
-	public ArrayList<LogicElement> getLogicElements() {
+	public ArrayList<LogicElementRenderer> getLogicElements() {
 		return logicElements;
 	}
 	
-	public ArrayList<Link> getLinks() {
+	public ArrayList<LinkRenderer> getLinks() {
 		return links;
 	}
 }

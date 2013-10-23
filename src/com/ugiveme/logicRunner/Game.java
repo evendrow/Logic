@@ -14,12 +14,14 @@ import javax.swing.JScrollPane;
 import com.ugiveme.entity.Entity;
 import com.ugiveme.entity.draggable.DragHandler;
 import com.ugiveme.logic.LogicHandler;
+import com.ugiveme.logic.gui.LogicElementRenderer;
+import com.ugiveme.logic.gui.component.gate.GateXORRenderer;
 
 public class Game extends JPanel implements Runnable{
 	private static final long serialVersionUID = 1L;
 	
 	public static final String title = "Logic FTW!!!!";
-	public static final Dimension size = new Dimension(800, 600);
+	public static final Dimension size = new Dimension(1000, 650);
 	
 	public static Thread gameLoop;
 	public static Game game;
@@ -28,10 +30,10 @@ public class Game extends JPanel implements Runnable{
 	public boolean running;
 	
 	public KeyHandler keyHandler;
-	public DragHandler dragHandler; 
-	public LogicHandler logicHandler;
+	public static DragHandler dragHandler; 
+	public static LogicHandler logicHandler;
 	
-	private List<Entity> entities;
+	private List<LogicElementRenderer> entities;
 	
 	private int ticks = 0;
 	private int fps = 0;
@@ -55,7 +57,7 @@ public class Game extends JPanel implements Runnable{
 		frame.add(scrollPane, BorderLayout.CENTER);
 		frame.setVisible(true);
 		
-		entities = new ArrayList<Entity>();
+		entities = new ArrayList<LogicElementRenderer>();
 		
 		keyHandler = new KeyHandler(this);
 		dragHandler = new DragHandler(this);
@@ -64,11 +66,11 @@ public class Game extends JPanel implements Runnable{
 
 	}
 	
-	public void addEntity(Entity entity) {
+	public void addEntity(LogicElementRenderer entity) {
 		entities.add(entity);
 	}
 	
-	public synchronized List<Entity> getEntities() {
+	public synchronized List<LogicElementRenderer> getEntities() {
 		return entities;
 	}
 	
@@ -102,7 +104,7 @@ public class Game extends JPanel implements Runnable{
 		g.fillRect(0, 0, getWidth(), getHeight());
 		
 		if (getEntities() != null) {
-			for (Entity e : getEntities()) {
+			for (LogicElementRenderer e : getEntities()) {
 				e.render(g);
 			}
 		}
@@ -112,12 +114,12 @@ public class Game extends JPanel implements Runnable{
 		}
 		
 		g.setColor(Color.BLACK);
-		g.drawString("fps: " + fps, 50, 25);
+		g.drawString("fps: " + fps, 25, 25);
 	}
 	
 	public void run() {
 		
-		int ticksPerSecond = 50;
+		int ticksPerSecond = 60;
 		int nanoSecondsPerTick = 1000000000/ticksPerSecond;
 		
 		long timePassed = 0;
@@ -125,6 +127,8 @@ public class Game extends JPanel implements Runnable{
 		long now;
 		
 		long tickTimer = System.currentTimeMillis();
+		
+		tick();
 		
 		while (running) {
 			now = System.nanoTime();
@@ -140,6 +144,10 @@ public class Game extends JPanel implements Runnable{
 			if (ticked) {
 				ticks++;
 				tick();
+//				if (dragHandler.isUpdated()) {
+//					tick();
+//					dragHandler.setUpdated(false);
+//				}
 				repaint();
 			}
 			

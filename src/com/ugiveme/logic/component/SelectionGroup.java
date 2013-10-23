@@ -5,17 +5,17 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import com.ugiveme.logic.LogicElement;
 import com.ugiveme.logic.LogicHandler;
-import com.ugiveme.logic.component.link.Link;
+import com.ugiveme.logic.gui.LogicElementRenderer;
+import com.ugiveme.logic.gui.component.LinkRenderer;
 import com.ugiveme.logic.save.SaveObject;
 
 public class SelectionGroup {
 
-	private ArrayList<LogicElement> logicElements;
+	private ArrayList<LogicElementRenderer> logicElements;
 	private ArrayList<Point> logicElementsPos;
 	
-	public SelectionGroup(ArrayList<LogicElement> logicElements) {
+	public SelectionGroup(ArrayList<LogicElementRenderer> logicElements) {
 		this.logicElements = logicElements;
 		
 		this.logicElementsPos = new ArrayList<Point>();
@@ -29,26 +29,26 @@ public class SelectionGroup {
 	}
 	
 	public SaveObject duplicate() {
-		ArrayList<LogicElement> newElements = new ArrayList<LogicElement>();
-		ArrayList<Link> newLinks = new ArrayList<Link>();
+		ArrayList<LogicElementRenderer> newElements = new ArrayList<LogicElementRenderer>();
+		ArrayList<LinkRenderer> newLinks = new ArrayList<LinkRenderer>();
 		
 		for (int i=0;i<logicElements.size();i++) {
-			newElements.add(LogicHandler.addGate(logicElements.get(i).getType(), (int) logicElements.get(i).x + 20, (int) logicElements.get(i).y + 20));
+			//newElements.add(LogicHandler.addGate(logicElements.get(i).getLogicType(), (int) logicElements.get(i).x + 20, (int) logicElements.get(i).y + 20));
 		}
 		
-		for (int i=0;i<logicElements.size();i++) {
-			if (logicElements.get(i).getInputLength() > 0) {
-				for (int k=0;k<logicElements.get(i).getInputLength();k++) {
-					if (logicElements.get(i).getInputAtIndex(k).linked()) {
-						for (int j=0;j<logicElements.size();j++) {
-							if (logicElements.get(i).getInputAtIndex(k).getLink().getOutput() == logicElements.get(j).output) {
-								newLinks.add(new Link(newElements.get(j).output, newElements.get(i).getInputAtIndex(k)));
-							}
-						}
-					}
-				}
-			}
-		}System.out.println("done2");
+//		for (int i=0;i<logicElements.size();i++) {
+//			if (logicElements.get(i).getInputLength() > 0) {
+//				for (int k=0;k<logicElements.get(i).getInputLength();k++) {
+//					if (logicElements.get(i).getInputAtIndex(k).linked()) {
+//						for (int j=0;j<logicElements.size();j++) {
+//							if (logicElements.get(i).getInputAtIndex(k).getLink().getOutput() == logicElements.get(j).output) {
+//								newLinks.add(new Link(newElements.get(j).output, newElements.get(i).getInputAtIndex(k)));
+//							}
+//						}
+//					}
+//				}
+//			}
+//		}System.out.println("done2");
 		
 		
 		return new SaveObject(newElements, newLinks);
@@ -106,7 +106,7 @@ public class SelectionGroup {
 		}
 	}
 	
-	public ArrayList<LogicElement> getLogicElements() {
+	public ArrayList<LogicElementRenderer> getLogicElements() {
 		return logicElements;
 	}
 

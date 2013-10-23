@@ -5,25 +5,39 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 import com.ugiveme.entity.draggable.DragHandler;
+import com.ugiveme.logic.gui.LogicElementRenderer;
 
-public class MenuElement extends Rectangle{
+public class MenuElement extends Rectangle implements Renderable, Tickable{
 	
 	private String elementName;
 	
-	private LogicElement element;
+	private LogicElementRenderer element;
+	private DragHandler dragHandler;
 	
-	public MenuElement(DragHandler dragHandler, int x, int y, String elementName) {
+	private boolean partOfMenu;
+	
+	private int[] args;
+	
+	public MenuElement(DragHandler dragHandler, int x, int y, String elementName, int... args) {
 		setBounds(x, y, 60, 60);
 		
 		this.elementName = elementName;
+		this.dragHandler = dragHandler;
 		
-		this.element = LogicHandler.addMenuElement(elementName, x, y);
+		this.partOfMenu = true;
+		
+		this.element = Logic.getLogicElementRenderer(elementName, x, y, args);
+		this.args = args;
+	}
+	
+	public void setNewElement() {
+		element = Logic.getLogicElementRenderer(elementName, x, y, args);
 	}
 	
 	public void tick() {
+		element.tick();
 		if (!element.getPosPoint().equals(this.getPosPoint())) {
-			element.setPartOfMenu(false);
-			element = LogicHandler.addMenuElement(elementName, x, y);
+			partOfMenu = false;
 		}
 	}
 	
@@ -31,9 +45,22 @@ public class MenuElement extends Rectangle{
 //		g.setColor(Color.BLACK);
 //		g.drawRect(x, y, width, height);
 //		g.drawString(elementName, x + 20, y + 20);
+		element.render(g);
 	}
 	
 	public Point getPosPoint() {
 		return new Point(x, y);
+	}
+	
+	public LogicElementRenderer getElement() {
+		return element;
+	}
+	
+	public boolean isPartOfMenu() {
+		return partOfMenu;
+	}
+	
+	public void setPartOfMenu(boolean partOfMenu) {
+		this.partOfMenu = partOfMenu;
 	}
 }

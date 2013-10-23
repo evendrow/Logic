@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import com.ugiveme.entity.draggable.DragHandler;
 import com.ugiveme.entity.draggable.DraggableEntity;
-import com.ugiveme.logic.LogicElement;
+import com.ugiveme.logic.gui.LogicElementRenderer;
 import com.ugiveme.logic.save.SaveObject;
 
 public class SelectionBox extends DraggableEntity{
@@ -16,9 +16,9 @@ public class SelectionBox extends DraggableEntity{
 	
 	private boolean boxStarted;
 	
-	private ArrayList<LogicElement> logicElements;
+	private ArrayList<LogicElementRenderer> logicElements;
 	
-	public SelectionBox(DragHandler dragHandler, ArrayList<LogicElement> logicElements) {
+	public SelectionBox(DragHandler dragHandler, ArrayList<LogicElementRenderer> logicElements) {
 		super(dragHandler, 0, 0, 0, 0, false);
 		
 		this.logicElements = logicElements;
@@ -56,7 +56,7 @@ public class SelectionBox extends DraggableEntity{
 			height = (int) (getDragHandler().getMousePos().y - y);
 			if (getDragHandler().isDragging() == false) {
 				boxStarted = false;
-				ArrayList<LogicElement> LEInBox = new ArrayList<LogicElement>();
+				ArrayList<LogicElementRenderer> LEInBox = new ArrayList<LogicElementRenderer>();
 				for (int i=0;i<logicElements.size();i++) {
 					if (getOmniDirectionalRect().intersects(logicElements.get(i).getRect())) {
 						LEInBox.add(this.logicElements.get(i));

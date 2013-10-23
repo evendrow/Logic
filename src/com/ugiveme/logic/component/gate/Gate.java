@@ -1,128 +1,65 @@
 package com.ugiveme.logic.component.gate;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
+import com.ugiveme.logic.misc.DataProvider;
+import com.ugiveme.logic.misc.DataReceiver;
+import com.ugiveme.logic.Tickable;
 
-import javax.imageio.ImageIO;
+/**
+ * A generic logic gate with any number of inputs and one output.
+ * To implement your own gate, extend this class and override the
+ * doTick() method in order to determine the output based on the
+ * current inputs.
+ * @author ben
+ */
+public abstract class Gate implements Tickable, DataProvider, DataReceiver {
+	
+	protected boolean inputs[];
+	protected boolean output;
+	
+	/**
+	 * Create a new Gate
+	 * @param inputs The number of inputs that this gate has.
+	 */
+	public Gate(int inputs) {
+		this.inputs = new boolean[inputs];
+	}
+	
+	/**
+	 * Set the number of inputs that this gate has.
+	 * @param length The number of inputs this gate should have.
+	 */
+	public void setInputLength(int length) {
+		inputs = new boolean[length];
+	}
 
-import com.ugiveme.entity.draggable.DragHandler;
-import com.ugiveme.logic.LogicElement;
-import com.ugiveme.logic.component.Input;
-import com.ugiveme.logic.component.Output;
+	@Override
+	public void setData(boolean[] data) {
+		inputs = data;
+	}
 
-public class Gate extends LogicElement{
+	@Override
+	public void setBit(boolean bit, int index) {
+		inputs[index] = bit;
+	}
 
-	public static final int GATESIZE = 60;
-	
-	private String gateType;
-	
-	private Image gateImage;
-	
-	public Gate(int id, DragHandler dragHandler, int x, int y, String gateType) {
-		super(id, dragHandler, x, y, Gate.GATESIZE, Gate.GATESIZE, gateType);
-		
-		this.gateType = gateType;
-		
-		this.input = new Input[] {
-			new Input(-(IOSIZE/2), 10, IOSIZE, IOSIZE, this, 0),
-			new Input(-(IOSIZE/2), GATESIZE - IOSIZE - 10, IOSIZE, IOSIZE, this, 1)
-		};
-		this.output = new Output((int) width - (IOSIZE/2), (int) ((height - IOSIZE)/2), IOSIZE, IOSIZE, this, 0);
+	@Override
+	public int getAcceptedDataWidth() {
+		return inputs.length;
 	}
-	
-	public Gate(int id, DragHandler dragHandler, int x, int y, String gateType, String gateImageURL) {
-		super(id, dragHandler, x, y, Gate.GATESIZE, Gate.GATESIZE, gateType);
-		
-		this.gateType = gateType;
-		
-		this.input = new Input[] {
-			new Input(-(IOSIZE/2), 10, IOSIZE, IOSIZE, this, 0),
-			new Input(-(IOSIZE/2), GATESIZE - IOSIZE - 10, IOSIZE, IOSIZE, this, 1)
-		};
-		this.output = new Output((int) width - (IOSIZE/2), (int) ((height - IOSIZE)/2), IOSIZE, IOSIZE, this, 0);
-		
-		try {
-			this.gateImage = ImageIO.read(new File(gateImageURL));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
+	@Override
+	public boolean[] getCurrentData() {
+		return new boolean[]{output};
 	}
-	
-	public void tick() {
-		super.tick();
-		
-		for (int i=0;i<input.length;i++) {
-			input[i].tick();
-		}
-		output.tick();
+
+	@Override
+	public boolean getBit(int index) {
+		return new boolean[]{output}[index];//This way there is an error thrown if used weirdly
 	}
-	
-	public void render(Graphics g) {
-		g.drawString("Dragging:" + draggingEntity, 300, 40);
-		if (gateImage != null) {
-			renderWithPicture(g);
-		} else {
-			g.setColor(new Color(200, 200, 200));
-			g.fillRect((int) x, (int) y, width, height);
-			
-			if (isPowered()) {
-				g.setColor(Color.ORANGE);
-			} else {
-				g.setColor(Color.GRAY);
-			}
-			g.fillOval((int) x + 10, (int) y + 10, width - 20, height - 20);
-			
-			g.setColor(Color.BLACK);
-			g.drawRect((int) x, (int) y, width, height);
-			g.drawString(gateType, (int) x + 20, (int) y + 20);
-			
-			for (int i=0;i<input.length;i++) {
-				input[i].render(g);
-			}
-			output.render(g);
-		}
+
+	@Override
+	public int getProvidedDataWidth() {
+		return 1;
 	}
-	
-	
-	public void renderWithPicture(Graphics g) {
-		for (int i=0;i<input.length;i++) {
-			input[i].render(g);
-		}
-		output.render(g);
-		
-		if (gateImage != null) {
-			g.drawImage(gateImage, (int) x, (int) y, null);
-		}
-		
-		if (isPowered()) {
-			g.setColor(Color.ORANGE);
-			g.fillOval((int) x + 5, (int) y + 15, width - 20, height - 30);
-		}
-		
-		g.setColor(Color.BLACK);
-		g.drawString(gateType, (int) x + 10, (int) y + 33);
-	}
-//	public boolean inputContainsPoint(Point p) {
-//		for (int i=0;i<input.length;i++) {
-//			if (input[i].contains(p.x - x, p.y - y)) {
-//				return true;
-//			}
-//		}
-//		return false;
-//	}
-	
-//	public boolean inputNumContainsPoint(Point p, int inputNum) {
-//		if (input[inputNum].contains(p)) {
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
-	
-//	public boolean outputContainsPoint(Point p) {
-//		return output.contains(p);
-//	}
+
 }

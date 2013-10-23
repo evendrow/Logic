@@ -17,6 +17,8 @@ public class DragHandler implements MouseListener, MouseMotionListener{
 	private boolean mouseClicked;
 	private Point clickPoint;
 	
+	private boolean updated;
+	
 	public DragHandler(Game game) {
 		mousePos = new Point(0, 0);
 		clickPoint = new Point(0, 0);
@@ -24,19 +26,22 @@ public class DragHandler implements MouseListener, MouseMotionListener{
 		dragging = false;
 		startedDragging = false;
 		
+		updated = false;
+		
 		game.addMouseListener(this);
 		game.addMouseMotionListener(this);
-		
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		mousePos = new Point(e.getX(), e.getY());
+		updated = true;
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		mousePos = new Point(e.getX(), e.getY());
+		updated = true;
 	}
 
 	@Override
@@ -44,6 +49,7 @@ public class DragHandler implements MouseListener, MouseMotionListener{
 		dragging = false;
 		mouseClicked = true;
 		clickPoint = new Point(e.getX(), e.getY());
+		updated = true;
 	}
 
 	@Override
@@ -61,11 +67,13 @@ public class DragHandler implements MouseListener, MouseMotionListener{
 		dragging = true;
 		startedDragging = true;
 		mouseClicked = false;
+		updated = true;
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		dragging = false;
+		updated = true;
 	}
 	
 	
@@ -95,6 +103,14 @@ public class DragHandler implements MouseListener, MouseMotionListener{
 	
 	public Point getMouseClickPoint() {
 		return clickPoint;
+	}
+	
+	public boolean isUpdated() {
+		return updated;
+	}
+	
+	public void setUpdated(boolean updated) {
+		this.updated = updated;
 	}
 
 }
