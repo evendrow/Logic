@@ -1,4 +1,4 @@
-package com.ugiveme.logic.gui.component.gate;
+package com.edwardv.logic.gui.component.gate;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,12 +7,12 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
-import com.ugiveme.entity.draggable.DragHandler;
-import com.ugiveme.logic.Logic;
-import com.ugiveme.logic.component.gate.Gate;
-import com.ugiveme.logic.gui.InputRenderer;
-import com.ugiveme.logic.gui.LogicElementRenderer;
-import com.ugiveme.logic.gui.OutputRenderer;
+import com.edwardv.entity.draggable.DragHandler;
+import com.edwardv.logic.Logic;
+import com.edwardv.logic.component.gate.Gate;
+import com.edwardv.logic.gui.InputRenderer;
+import com.edwardv.logic.gui.LogicElementRenderer;
+import com.edwardv.logic.gui.OutputRenderer;
 
 public abstract class GateRenderer extends LogicElementRenderer{
 

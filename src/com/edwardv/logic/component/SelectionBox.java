@@ -1,14 +1,14 @@
-package com.ugiveme.logic.component;
+package com.edwardv.logic.component;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import com.ugiveme.entity.draggable.DragHandler;
-import com.ugiveme.entity.draggable.DraggableEntity;
-import com.ugiveme.logic.gui.LogicElementRenderer;
-import com.ugiveme.logic.save.SaveObject;
+import com.edwardv.entity.draggable.DragHandler;
+import com.edwardv.entity.draggable.DraggableEntity;
+import com.edwardv.logic.gui.LogicElementRenderer;
+import com.edwardv.logic.save.SaveObject;
 
 public class SelectionBox extends DraggableEntity{
 

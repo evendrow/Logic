@@ -1,8 +1,8 @@
-package com.ugiveme.logic.component;
+package com.edwardv.logic.component;
 
-import com.ugiveme.logic.misc.DataProvider;
-import com.ugiveme.logic.misc.DataReceiver;
-import com.ugiveme.logic.Tickable;
+import com.edwardv.logic.Tickable;
+import com.edwardv.logic.misc.DataProvider;
+import com.edwardv.logic.misc.DataReceiver;
 
 public class Link implements Tickable {
 	

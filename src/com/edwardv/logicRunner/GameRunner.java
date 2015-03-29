@@ -1,4 +1,4 @@
-package com.ugiveme.logicRunner;
+package com.edwardv.logicRunner;
 
 public class GameRunner{
 	

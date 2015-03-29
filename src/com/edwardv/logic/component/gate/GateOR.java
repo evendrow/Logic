@@ -1,4 +1,4 @@
-package com.ugiveme.logic.component.gate;
+package com.edwardv.logic.component.gate;
 
 /**
  * An OR gate. If at least one input is true, then

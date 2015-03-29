@@ -1,4 +1,4 @@
-package com.ugiveme.logic.gui.component.receive;
+package com.edwardv.logic.gui.component.receive;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,10 +6,10 @@ import java.awt.Graphics2D;
 import java.awt.MultipleGradientPaint.CycleMethod;
 import java.awt.RadialGradientPaint;
 
-import com.ugiveme.entity.draggable.DragHandler;
-import com.ugiveme.logic.component.receive.Light;
-import com.ugiveme.logic.gui.InputRenderer;
-import com.ugiveme.logic.gui.LogicElementRenderer;
+import com.edwardv.entity.draggable.DragHandler;
+import com.edwardv.logic.component.receive.Light;
+import com.edwardv.logic.gui.InputRenderer;
+import com.edwardv.logic.gui.LogicElementRenderer;
 
 public class LightRenderer extends LogicElementRenderer{
 

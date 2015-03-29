@@ -1,4 +1,4 @@
-package com.ugiveme.logic.component.gate;
+package com.edwardv.logic.component.gate;
 
 /**
  * An AND gate. If all inputs are true,

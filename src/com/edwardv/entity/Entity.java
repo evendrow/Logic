@@ -1,4 +1,4 @@
-package com.ugiveme.entity;
+package com.edwardv.entity;
 
 import java.awt.*;
 

@@ -1,4 +1,4 @@
-package com.ugiveme.logic;
+package com.edwardv.logic;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import com.ugiveme.entity.draggable.DragHandler;
-import com.ugiveme.logic.gui.LogicElementRenderer;
-import com.ugiveme.logic.save.Save;
-import com.ugiveme.logicRunner.Game;
+import com.edwardv.entity.draggable.DragHandler;
+import com.edwardv.logic.gui.LogicElementRenderer;
+import com.edwardv.logic.save.Save;
+import com.edwardv.logicRunner.Game;
 
 public class LogicMenu extends Rectangle implements Renderable{
 	

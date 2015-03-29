@@ -1,9 +1,9 @@
-package com.ugiveme.logic.save;
+package com.edwardv.logic.save;
 
 import java.util.ArrayList;
 
-import com.ugiveme.logic.gui.LogicElementRenderer;
-import com.ugiveme.logic.gui.component.LinkRenderer;
+import com.edwardv.logic.gui.LogicElementRenderer;
+import com.edwardv.logic.gui.component.LinkRenderer;
 
 public class SaveObject {
 	

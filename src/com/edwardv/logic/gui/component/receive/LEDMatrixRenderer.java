@@ -1,12 +1,12 @@
-package com.ugiveme.logic.gui.component.receive;
+package com.edwardv.logic.gui.component.receive;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-import com.ugiveme.entity.draggable.DragHandler;
-import com.ugiveme.logic.component.receive.LEDMatrix;
-import com.ugiveme.logic.gui.InputRenderer;
-import com.ugiveme.logic.gui.LogicElementRenderer;
+import com.edwardv.entity.draggable.DragHandler;
+import com.edwardv.logic.component.receive.LEDMatrix;
+import com.edwardv.logic.gui.InputRenderer;
+import com.edwardv.logic.gui.LogicElementRenderer;
 
 public class LEDMatrixRenderer extends LogicElementRenderer{
 

@@ -1,11 +1,11 @@
-package com.ugiveme.logic;
+package com.edwardv.logic;
 
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import com.ugiveme.entity.draggable.DragHandler;
-import com.ugiveme.logic.gui.LogicElementRenderer;
+import com.edwardv.entity.draggable.DragHandler;
+import com.edwardv.logic.gui.LogicElementRenderer;
 
 public class MenuElement extends Rectangle implements Renderable, Tickable{
 	

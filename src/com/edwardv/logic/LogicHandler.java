@@ -1,20 +1,19 @@
-package com.ugiveme.logic;
+package com.edwardv.logic;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import com.ugiveme.entity.draggable.DragHandler;
-import com.ugiveme.logic.component.SelectionBox;
-import com.ugiveme.logic.component.SelectionGroup;
-
-import com.ugiveme.logic.gui.InputRenderer;
-import com.ugiveme.logic.gui.LogicElementRenderer;
-import com.ugiveme.logic.gui.OutputRenderer;
-import com.ugiveme.logic.gui.component.LinkRenderer;
-import com.ugiveme.logic.save.SaveObject;
-import com.ugiveme.logicRunner.Game;
+import com.edwardv.entity.draggable.DragHandler;
+import com.edwardv.logic.component.SelectionBox;
+import com.edwardv.logic.component.SelectionGroup;
+import com.edwardv.logic.gui.InputRenderer;
+import com.edwardv.logic.gui.LogicElementRenderer;
+import com.edwardv.logic.gui.OutputRenderer;
+import com.edwardv.logic.gui.component.LinkRenderer;
+import com.edwardv.logic.save.SaveObject;
+import com.edwardv.logicRunner.Game;
 
 public class LogicHandler {
 	
@@ -112,7 +111,7 @@ public class LogicHandler {
 			}
 			
 //			if (DUPLICATE.contains(dragHandler.getMouseClickPoint())) {
-//				System.out.println("hi");
+////				System.out.println("hi");
 //				SaveObject toAdd = sBox.duplicate();
 //				if (toAdd != null) {
 //					duplicateElements = toAdd.getLogicElements();
@@ -143,7 +142,7 @@ public class LogicHandler {
 		
 		sBox.tick();
 		if (duplicatePressed) {
-			//sBox.selectionGroup = new SelectionGroup(duplicateElements);
+//			sBox.selectionGroup = new SelectionGroup(duplicateElements);
 			duplicatePressed = false;
 		}
 		
@@ -174,7 +173,7 @@ public class LogicHandler {
 		
 		g.setColor(Color.BLACK);
 		g.drawRect(DUPLICATE.x, DUPLICATE.y, DUPLICATE.width, DUPLICATE.height);
-		g.drawString("Dis button no work", DUPLICATE.x+20, DUPLICATE.y+30);
+//		g.drawString("Button Doesn't Work", DUPLICATE.x+20, DUPLICATE.y+30);
 		
 		sBox.render(g);
 	}

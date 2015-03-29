@@ -1,14 +1,14 @@
-package com.ugiveme.logic.save;
+package com.edwardv.logic.save;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 
-import com.ugiveme.logic.Logic;
-import com.ugiveme.logic.LogicHandler;
-import com.ugiveme.logic.component.Link;
-import com.ugiveme.logic.gui.LogicElementRenderer;
+import com.edwardv.logic.Logic;
+import com.edwardv.logic.LogicHandler;
+import com.edwardv.logic.component.Link;
+import com.edwardv.logic.gui.LogicElementRenderer;
 
 public class Save {
 	

@@ -1,11 +1,11 @@
-package com.ugiveme.entity.draggable;
+package com.edwardv.entity.draggable;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import com.ugiveme.logicRunner.Game;
+import com.edwardv.logicRunner.Game;
 
 public class DragHandler implements MouseListener, MouseMotionListener{
 

@@ -1,13 +1,13 @@
-package com.ugiveme.logic.gui.component;
+package com.edwardv.logic.gui.component;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-import com.ugiveme.logic.Renderable;
-import com.ugiveme.logic.Tickable;
-import com.ugiveme.logic.component.Link;
-import com.ugiveme.logic.gui.InputRenderer;
-import com.ugiveme.logic.gui.OutputRenderer;
+import com.edwardv.logic.Renderable;
+import com.edwardv.logic.Tickable;
+import com.edwardv.logic.component.Link;
+import com.edwardv.logic.gui.InputRenderer;
+import com.edwardv.logic.gui.OutputRenderer;
 
 public class LinkRenderer implements Tickable, Renderable{
 

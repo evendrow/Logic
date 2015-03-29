@@ -1,4 +1,4 @@
-package com.ugiveme.logic;
+package com.edwardv.logic;
 
 import java.awt.Graphics;
 

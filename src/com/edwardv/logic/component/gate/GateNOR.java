@@ -1,4 +1,4 @@
-package com.ugiveme.logic.component.gate;
+package com.edwardv.logic.component.gate;
 
 /**
  * A NOR gate. If at least one input is true, then

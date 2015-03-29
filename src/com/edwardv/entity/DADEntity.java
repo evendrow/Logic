@@ -1,10 +1,10 @@
-package com.ugiveme.entity;
+package com.edwardv.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import com.ugiveme.logicRunner.MouseHandler;
+import com.edwardv.logicRunner.MouseHandler;
 
 public class DADEntity extends Entity{
 

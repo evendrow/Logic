@@ -1,7 +1,7 @@
-package com.ugiveme.logic.component.receive;
+package com.edwardv.logic.component.receive;
 
-import com.ugiveme.logic.Tickable;
-import com.ugiveme.logic.misc.DataReceiver;
+import com.edwardv.logic.Tickable;
+import com.edwardv.logic.misc.DataReceiver;
 
 public class Light implements Tickable, DataReceiver{
 

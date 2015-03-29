@@ -1,13 +1,13 @@
-package com.ugiveme.logic;
+package com.edwardv.logic;
 
-import com.ugiveme.entity.draggable.DragHandler;
-import com.ugiveme.logic.component.gate.*;
-import com.ugiveme.logic.gui.LogicElementRenderer;
-import com.ugiveme.logic.gui.component.gate.*;
-import com.ugiveme.logic.gui.component.receive.LEDMatrixRenderer;
-import com.ugiveme.logic.gui.component.receive.LightRenderer;
-import com.ugiveme.logic.gui.component.supply.SwitchRenderer;
-import com.ugiveme.logicRunner.Game;
+import com.edwardv.entity.draggable.DragHandler;
+import com.edwardv.logic.component.gate.*;
+import com.edwardv.logic.gui.LogicElementRenderer;
+import com.edwardv.logic.gui.component.gate.*;
+import com.edwardv.logic.gui.component.receive.LEDMatrixRenderer;
+import com.edwardv.logic.gui.component.receive.LightRenderer;
+import com.edwardv.logic.gui.component.supply.SwitchRenderer;
+import com.edwardv.logicRunner.Game;
 
 public class Logic {
 	

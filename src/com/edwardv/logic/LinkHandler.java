@@ -1,14 +1,14 @@
-package com.ugiveme.logic;
+package com.edwardv.logic;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import com.ugiveme.entity.draggable.DragHandler;
-import com.ugiveme.logic.gui.InputRenderer;
-import com.ugiveme.logic.gui.LogicElementRenderer;
-import com.ugiveme.logic.gui.OutputRenderer;
-import com.ugiveme.logic.gui.component.LinkRenderer;
+import com.edwardv.entity.draggable.DragHandler;
+import com.edwardv.logic.gui.InputRenderer;
+import com.edwardv.logic.gui.LogicElementRenderer;
+import com.edwardv.logic.gui.OutputRenderer;
+import com.edwardv.logic.gui.component.LinkRenderer;
 
 public class LinkHandler implements Tickable, Renderable{
 

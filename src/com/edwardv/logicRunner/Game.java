@@ -1,4 +1,4 @@
-package com.ugiveme.logicRunner;
+package com.edwardv.logicRunner;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,16 +11,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import com.ugiveme.entity.Entity;
-import com.ugiveme.entity.draggable.DragHandler;
-import com.ugiveme.logic.LogicHandler;
-import com.ugiveme.logic.gui.LogicElementRenderer;
-import com.ugiveme.logic.gui.component.gate.GateXORRenderer;
+import com.edwardv.entity.Entity;
+import com.edwardv.entity.draggable.DragHandler;
+import com.edwardv.logic.LogicHandler;
+import com.edwardv.logic.gui.LogicElementRenderer;
+import com.edwardv.logic.gui.component.gate.GateXORRenderer;
 
 public class Game extends JPanel implements Runnable{
 	private static final long serialVersionUID = 1L;
 	
-	public static final String title = "Logic FTW!!!!";
+	public static final String title = "Logic Simulator";
 	public static final Dimension size = new Dimension(1000, 650);
 	
 	public static Thread gameLoop;

@@ -1,14 +1,14 @@
-package com.ugiveme.logic.gui;
+package com.edwardv.logic.gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import com.ugiveme.entity.draggable.DragHandler;
-import com.ugiveme.entity.draggable.DraggableEntity;
-import com.ugiveme.logic.Logic;
-import com.ugiveme.logic.Renderable;
-import com.ugiveme.logic.Tickable;
+import com.edwardv.entity.draggable.DragHandler;
+import com.edwardv.entity.draggable.DraggableEntity;
+import com.edwardv.logic.Logic;
+import com.edwardv.logic.Renderable;
+import com.edwardv.logic.Tickable;
 
 public class LogicElementRenderer extends DraggableEntity implements Renderable, Tickable{
 

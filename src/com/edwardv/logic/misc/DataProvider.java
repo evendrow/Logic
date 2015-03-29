@@ -1,4 +1,4 @@
-package com.ugiveme.logic.misc;
+package com.edwardv.logic.misc;
 
 public interface DataProvider {
 	

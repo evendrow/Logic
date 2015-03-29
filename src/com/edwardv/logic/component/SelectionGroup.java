@@ -1,14 +1,14 @@
-package com.ugiveme.logic.component;
+package com.edwardv.logic.component;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import com.ugiveme.logic.LogicHandler;
-import com.ugiveme.logic.gui.LogicElementRenderer;
-import com.ugiveme.logic.gui.component.LinkRenderer;
-import com.ugiveme.logic.save.SaveObject;
+import com.edwardv.logic.LogicHandler;
+import com.edwardv.logic.gui.LogicElementRenderer;
+import com.edwardv.logic.gui.component.LinkRenderer;
+import com.edwardv.logic.save.SaveObject;
 
 public class SelectionGroup {
 

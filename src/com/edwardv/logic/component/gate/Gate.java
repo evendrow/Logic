@@ -1,8 +1,8 @@
-package com.ugiveme.logic.component.gate;
+package com.edwardv.logic.component.gate;
 
-import com.ugiveme.logic.misc.DataProvider;
-import com.ugiveme.logic.misc.DataReceiver;
-import com.ugiveme.logic.Tickable;
+import com.edwardv.logic.Tickable;
+import com.edwardv.logic.misc.DataProvider;
+import com.edwardv.logic.misc.DataReceiver;
 
 /**
  * A generic logic gate with any number of inputs and one output.

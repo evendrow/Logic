@@ -1,6 +1,6 @@
-package com.ugiveme.logic.gui.component.gate;
+package com.edwardv.logic.gui.component.gate;
 
-import com.ugiveme.entity.draggable.DragHandler;
+import com.edwardv.entity.draggable.DragHandler;
 
 public class GateNANDRenderer extends GateRenderer{
 

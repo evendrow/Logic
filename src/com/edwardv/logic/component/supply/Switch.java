@@ -1,7 +1,7 @@
-package com.ugiveme.logic.component.supply;
+package com.edwardv.logic.component.supply;
 
-import com.ugiveme.logic.misc.DataProvider;
-import com.ugiveme.logic.Tickable;
+import com.edwardv.logic.Tickable;
+import com.edwardv.logic.misc.DataProvider;
 
 /**
  * A switch that can be switched between powering and non-powering.

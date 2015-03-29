@@ -1,9 +1,9 @@
-package com.ugiveme.entity;
+package com.edwardv.entity;
 
 import java.awt.Color;
 import java.awt.Graphics;
 
-import com.ugiveme.logicRunner.MouseHandler;
+import com.edwardv.logicRunner.MouseHandler;
 
 public class Light extends DADEntity{
 

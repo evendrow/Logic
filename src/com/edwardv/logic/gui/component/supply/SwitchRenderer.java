@@ -1,13 +1,13 @@
-package com.ugiveme.logic.gui.component.supply;
+package com.edwardv.logic.gui.component.supply;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import com.ugiveme.entity.draggable.DragHandler;
-import com.ugiveme.logic.component.supply.Switch;
-import com.ugiveme.logic.gui.LogicElementRenderer;
-import com.ugiveme.logic.gui.OutputRenderer;
+import com.edwardv.entity.draggable.DragHandler;
+import com.edwardv.logic.component.supply.Switch;
+import com.edwardv.logic.gui.LogicElementRenderer;
+import com.edwardv.logic.gui.OutputRenderer;
 
 public class SwitchRenderer extends LogicElementRenderer{
 

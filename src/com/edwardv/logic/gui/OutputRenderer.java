@@ -1,11 +1,11 @@
-package com.ugiveme.logic.gui;
+package com.edwardv.logic.gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import com.ugiveme.logic.Renderable;
-import com.ugiveme.logic.misc.DataProvider;
+import com.edwardv.logic.Renderable;
+import com.edwardv.logic.misc.DataProvider;
 
 public class OutputRenderer implements Renderable{
 

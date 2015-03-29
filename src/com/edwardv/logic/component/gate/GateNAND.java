@@ -1,4 +1,4 @@
-package com.ugiveme.logic.component.gate;
+package com.edwardv.logic.component.gate;
 
 /**
  * A NAND gate. If all inputs are true,

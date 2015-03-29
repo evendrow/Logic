@@ -1,11 +1,11 @@
-package com.ugiveme.entity.draggable;
+package com.edwardv.entity.draggable;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
-import com.ugiveme.entity.Entity;
-import com.ugiveme.entity.draggable.DragHandler;
+import com.edwardv.entity.Entity;
+import com.edwardv.entity.draggable.DragHandler;
 
 public class DraggableEntity extends Entity{
 

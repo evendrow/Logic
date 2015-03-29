@@ -1,4 +1,4 @@
-package com.ugiveme.logic.component.gate;
+package com.edwardv.logic.component.gate;
 
 /**
  * An XOR gate. There are two modes of operation for this gate: strict and non-strict.
